@@ -44,6 +44,20 @@ python manage.py runserver        # http://127.0.0.1:8000
 python manage.py test
 ```
 
+### خطای `port 3306 already in use`
+یعنی روی سیستم شما یک MySQL دیگر روی پورت 3306 در حال اجراست. یکی از دو راه:
+```bash
+# راه ۱: دیتابیس Docker را روی پورت دیگری بالا بیاورید
+docker compose down
+export DB_PORT=3307              # در همان ترمینالی که docker compose و Django را اجرا می‌کنید
+docker compose up -d db
+# و Django هم از همین متغیر محیطی استفاده می‌کند (همان ترمینال)
+
+# راه ۲: MySQL لوکال را متوقف کنید (اگر لازمش ندارید)
+sudo systemctl stop mysql
+```
+برای دیدن اینکه چه چیزی پورت را گرفته: `sudo ss -ltnp | grep 3306`
+
 ### امتحان سریع API
 بعد از `createsuperuser`، با session (مرورگر) یا BasicAuth:
 ```bash
