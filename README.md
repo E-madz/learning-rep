@@ -70,14 +70,17 @@ curl -u USER:PASS -X DELETE http://127.0.0.1:8000/api/vms/1/
 ```
 (احراز هویت درست‌وحسابی را در درس ۳ می‌سازیم؛ فعلاً BasicAuth پیش‌فرض DRF کافی است.)
 
-### بدون Docker
-یک MySQL 8 نصب کنید و این را اجرا کنید:
+### بدون Docker (MySQL لوکال)
+در MySQL خودتان (در اوبونتو معمولاً `sudo mysql`) این را اجرا کنید:
 ```sql
 CREATE DATABASE cloudlab CHARACTER SET utf8mb4;
 CREATE USER 'cloudlab'@'localhost' IDENTIFIED BY 'cloudlab';
-GRANT ALL ON *.* TO 'cloudlab'@'localhost';  -- فقط برای dev؛ تست‌ها نیاز به ساخت test_cloudlab دارند
+GRANT ALL ON cloudlab.* TO 'cloudlab'@'localhost';
+GRANT ALL ON `test\_cloudlab`.* TO 'cloudlab'@'localhost';  -- دیتابیس موقت تست‌های جنگو
+FLUSH PRIVILEGES;
 ```
-تنظیمات اتصال با متغیرهای محیطی `DB_*` عوض می‌شود (نمونه: `backend/.env.example`).
+کاربر `cloudlab` فقط به همین دو دیتابیس دسترسی دارد. بقیه دیتابیس‌های شما دست‌نخورده می‌مانند.
+اگر پورت یا رمز شما فرق دارد، با متغیرهای محیطی `DB_*` عوض کنید (نمونه: `backend/.env.example`).
 
 ## درس‌ها
 | # | موضوع | دسته |
