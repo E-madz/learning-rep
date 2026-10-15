@@ -62,5 +62,5 @@ service خطاهای دامنه‌ای (`QuotaExceeded`) می‌اندازد، �
 2. یک تست بنویسید که service را با یک `FakeRepository` (بدون دیتابیس) اجرا کند.
 
 ## کد مربوط
-- `apps/compute/models.py`, `repositories.py`, `services.py`, `exceptions.py`
-- `apps/compute/api/` , `apps/compute/tests/`
+- `backend/apps/compute/models.py`, `repositories.py`, `services.py`, `exceptions.py`
+- `backend/apps/compute/api/` , `backend/apps/compute/tests/`
